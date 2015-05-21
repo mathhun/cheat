@@ -90,7 +90,7 @@ func main() {
 			},
 		},
 		{
-			Name:  "download",
+			Name:  "fetch",
 			Usage: "Download cheats",
 			Flags: []cli.Flag{
 				cli.StringFlag{
@@ -103,7 +103,7 @@ func main() {
 				},
 			},
 			Action: func(c *cli.Context) {
-				url := "https://github.com/jahendrie/cheat"
+				url := "https://github.com/chrisallenlane/cheat"
 				exitCode := download(url, c.String("dir"), c.Bool("verbose"))
 				os.Exit(exitCode)
 			},
@@ -190,7 +190,7 @@ func download(url string, cheatsDir string, verbose bool) int {
 		return 1
 	}
 
-	if copyCheatFiles(path.Join(cloneDir, "data"), cheatsDir) != nil {
+	if copyCheatFiles(path.Join(cloneDir, "cheat", "cheatsheets"), cheatsDir) != nil {
 		fmt.Fprintln(os.Stderr, err)
 		return 1
 	}
